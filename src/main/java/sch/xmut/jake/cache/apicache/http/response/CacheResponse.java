@@ -1,6 +1,7 @@
 package sch.xmut.jake.cache.apicache.http.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -12,13 +13,16 @@ import java.util.Map;
  */
 public class CacheResponse extends BaseResponse{
     @JsonProperty("key")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String key;
     @JsonProperty("value")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String value;
     @JsonProperty("value_list")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<String> valueList;
     @JsonProperty("map_entry")
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String, String> mapEntry;
 
     public String getKey() {

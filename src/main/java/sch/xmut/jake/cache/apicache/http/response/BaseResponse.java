@@ -1,5 +1,6 @@
 package sch.xmut.jake.cache.apicache.http.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -15,6 +16,7 @@ public class BaseResponse {
     @JsonProperty("status")
     private String status = SUCCESS_STATUS;
     @JsonProperty("message")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
 
     public BaseResponse(Integer statusCode, String status) {
