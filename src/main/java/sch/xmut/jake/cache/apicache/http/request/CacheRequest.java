@@ -1,6 +1,7 @@
 package sch.xmut.jake.cache.apicache.http.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import sch.xmut.jake.cache.apicache.constants.CacheConstans;
 import sch.xmut.jake.cache.apicache.constants.CommonConstants;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,6 +24,8 @@ public class CacheRequest {
     private List<String> valueList;
     @JsonProperty("map_entry")
     private Map<String, String> mapEntry;
+    @JsonProperty("operate_type")
+    private String operateType = CacheConstans.OPERATE_TYPE_LEFT;
 
     public String getMember() {
         return member;
@@ -62,5 +65,13 @@ public class CacheRequest {
 
     public void setMapEntry(Map<String, String> mapEntry) {
         this.mapEntry = mapEntry;
+    }
+
+    public String getOperateType() {
+        return operateType;
+    }
+
+    public void setOperateType(String operateType) {
+        this.operateType = operateType;
     }
 }
