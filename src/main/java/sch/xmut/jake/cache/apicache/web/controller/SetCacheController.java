@@ -10,6 +10,8 @@ import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.service.SetCacheService;
+import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
+
 import javax.validation.Valid;
 
 /**
@@ -38,7 +40,8 @@ public class SetCacheController {
      */
     @RequestMapping(value = "/get-by-key", method = RequestMethod.POST)
     @ResponseBody
-    public CacheResponse setGetByKey(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public CacheResponse setGetByKey(@RequestBody CacheRequest cacheRequest) {
         return setCacheService.setGetByKey(cacheRequest);
     }
 }

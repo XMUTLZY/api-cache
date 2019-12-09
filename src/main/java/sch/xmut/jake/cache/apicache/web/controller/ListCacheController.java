@@ -10,6 +10,7 @@ import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.service.ListCacheService;
+import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
 import javax.validation.Valid;
 
 /**
@@ -38,7 +39,8 @@ public class ListCacheController {
      */
     @RequestMapping(value = "/get-range", method = RequestMethod.POST)
     @ResponseBody
-    public CacheResponse listGetRange(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public CacheResponse listGetRange(@RequestBody CacheRequest cacheRequest) {
         return listCacheService.listGetRange(cacheRequest);
     }
 
@@ -48,7 +50,8 @@ public class ListCacheController {
      */
     @RequestMapping(value = "/get-one", method = RequestMethod.POST)
     @ResponseBody
-    public CacheResponse listGetOne(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public CacheResponse listGetOne(@RequestBody CacheRequest cacheRequest) {
         return listCacheService.listGetOne(cacheRequest);
     }
 
@@ -58,7 +61,8 @@ public class ListCacheController {
      */
     @RequestMapping(value = "/update-by-index", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse listUpdateByIndex(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public BaseResponse listUpdateByIndex(@RequestBody CacheRequest cacheRequest) {
         return listCacheService.listUpdateByIndex(cacheRequest);
     }
 
@@ -68,7 +72,8 @@ public class ListCacheController {
      */
     @RequestMapping(value = "/get-by-index", method = RequestMethod.POST)
     @ResponseBody
-    public CacheResponse listGetByIndex(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public CacheResponse listGetByIndex(@RequestBody CacheRequest cacheRequest) {
         return listCacheService.listGetByIndex(cacheRequest);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.service.StringCacheService;
+import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
 import javax.validation.Valid;
 
 /**
@@ -37,7 +38,8 @@ public class StringCacheController {
      */
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse stringGet(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public BaseResponse stringGet(@RequestBody CacheRequest cacheRequest) {
         return stringCacheService.get(cacheRequest);
     }
 
@@ -47,7 +49,8 @@ public class StringCacheController {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse stringDelete(@RequestBody @Valid CacheRequest cacheRequest) {
+    @KeyRequired
+    public BaseResponse stringDelete(@RequestBody CacheRequest cacheRequest) {
         return stringCacheService.delete(cacheRequest);
     }
 

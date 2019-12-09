@@ -3,7 +3,6 @@ package sch.xmut.jake.cache.apicache.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
@@ -19,9 +18,7 @@ public class SetCacheService {
 
     public BaseResponse setAdd(CacheRequest cacheRequest) {
         BaseResponse baseResponse = new BaseResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            baseResponse.setMessage("the key can't no be null.");
-        } else if (CollectionUtils.isEmpty(cacheRequest.getValueList())) {
+        if (CollectionUtils.isEmpty(cacheRequest.getValueList())) {
             baseResponse.setMessage("the value list can't no be null.");
         } else {
             return setCacheRepository.setAdd(cacheRequest);
@@ -30,13 +27,6 @@ public class SetCacheService {
     }
 
     public CacheResponse setGetByKey(CacheRequest cacheRequest) {
-        CacheResponse cacheResponse = new CacheResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            cacheResponse.setMessage("the key can't no be null.");
-        } else {
-            return setCacheRepository.setGetByKey(cacheRequest);
-        }
-        return cacheResponse;
+        return setCacheRepository.setGetByKey(cacheRequest);
     }
-
 }

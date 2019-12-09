@@ -19,9 +19,7 @@ public class ListCacheService {
 
     public BaseResponse add(CacheRequest cacheRequest) {
         BaseResponse baseResponse = new BaseResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            baseResponse.setMessage("the key can't no be null.");
-        } else if (CollectionUtils.isEmpty(cacheRequest.getValueList())) {
+        if (CollectionUtils.isEmpty(cacheRequest.getValueList())) {
             baseResponse.setMessage("the value list can't no be null.");
         } else {
             return listCacheRepository.add(cacheRequest);
@@ -31,10 +29,8 @@ public class ListCacheService {
 
     public CacheResponse listGetRange(CacheRequest cacheRequest) {
         CacheResponse cacheResponse = new CacheResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            cacheResponse.setMessage("the key can't no be null.");
-        } else if (cacheRequest.getStart() == null || cacheRequest.getEnd() == null) {
-            cacheResponse.setMessage("no find start and key.");
+         if (cacheRequest.getStart() == null || cacheRequest.getEnd() == null) {
+            cacheResponse.setMessage("no find start and end.");
         } else {
             return listCacheRepository.listGetRange(cacheRequest);
         }
@@ -42,20 +38,12 @@ public class ListCacheService {
     }
 
     public CacheResponse listGetOne(CacheRequest cacheRequest) {
-        CacheResponse cacheResponse = new CacheResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            cacheResponse.setMessage("the key can't no be null.");
-        } else {
-            return listCacheRepository.listGetOne(cacheRequest);
-        }
-        return cacheResponse;
+        return listCacheRepository.listGetOne(cacheRequest);
     }
 
     public BaseResponse listUpdateByIndex(CacheRequest cacheRequest) {
         BaseResponse baseResponse = new BaseResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            baseResponse.setMessage("the key can't no be null.");
-        } else if (cacheRequest.getIndex() == null) {
+        if (cacheRequest.getIndex() == null) {
             baseResponse.setMessage("the index can't no be null");
         } else if (!StringUtils.hasText(cacheRequest.getInsteadValue())) {
             baseResponse.setMessage("the instead value can't no be null");
@@ -67,9 +55,7 @@ public class ListCacheService {
 
     public CacheResponse listGetByIndex(CacheRequest cacheRequest) {
         CacheResponse cacheResponse = new CacheResponse();
-        if (!StringUtils.hasText(cacheRequest.getKey())) {
-            cacheResponse.setMessage("the key can't no be null.");
-        } else if (cacheRequest.getIndex() == null) {
+        if (cacheRequest.getIndex() == null) {
             cacheResponse.setMessage("the index can't no be null");
         } else {
             return listCacheRepository.listGetByIndex(cacheRequest);
