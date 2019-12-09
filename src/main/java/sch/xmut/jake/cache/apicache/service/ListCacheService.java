@@ -40,4 +40,40 @@ public class ListCacheService {
         }
         return cacheResponse;
     }
+
+    public CacheResponse listGetOne(CacheRequest cacheRequest) {
+        CacheResponse cacheResponse = new CacheResponse();
+        if (!StringUtils.hasText(cacheRequest.getKey())) {
+            cacheResponse.setMessage("the key can't no be null.");
+        } else {
+            return listCacheRepository.listGetOne(cacheRequest);
+        }
+        return cacheResponse;
+    }
+
+    public BaseResponse listUpdateByIndex(CacheRequest cacheRequest) {
+        BaseResponse baseResponse = new BaseResponse();
+        if (!StringUtils.hasText(cacheRequest.getKey())) {
+            baseResponse.setMessage("the key can't no be null.");
+        } else if (cacheRequest.getIndex() == null) {
+            baseResponse.setMessage("the index can't no be null");
+        } else if (!StringUtils.hasText(cacheRequest.getInsteadValue())) {
+            baseResponse.setMessage("the instead value can't no be null");
+        } else {
+            return listCacheRepository.listUpdateByIndex(cacheRequest);
+        }
+        return baseResponse;
+    }
+
+    public CacheResponse listGetByIndex(CacheRequest cacheRequest) {
+        CacheResponse cacheResponse = new CacheResponse();
+        if (!StringUtils.hasText(cacheRequest.getKey())) {
+            cacheResponse.setMessage("the key can't no be null.");
+        } else if (cacheRequest.getIndex() == null) {
+            cacheResponse.setMessage("the index can't no be null");
+        } else {
+            return listCacheRepository.listGetByIndex(cacheRequest);
+        }
+        return cacheResponse;
+    }
 }

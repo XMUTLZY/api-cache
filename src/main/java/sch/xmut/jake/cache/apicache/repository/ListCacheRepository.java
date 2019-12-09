@@ -43,4 +43,38 @@ public class ListCacheRepository {
         }
         return cacheResponse;
     }
+
+    public CacheResponse listGetOne(CacheRequest cacheRequest) {
+        CacheResponse cacheResponse = new CacheResponse();
+        try {
+            if (CacheConstans.OPERATE_TYPE_LEFT.equals(cacheRequest.getOperateType())) {
+                cacheResponse.setValue(jedisCluster.lpop(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey())));
+            } else {
+                cacheResponse.setValue(jedisCluster.rpop(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey())));
+            }
+        } catch (Exception e) {
+            SystemUtils.buildErrorResponse(cacheResponse);
+        }
+        return cacheResponse;
+    }
+
+    public BaseResponse listUpdateByIndex(CacheRequest cacheRequest) {
+        BaseResponse baseResponse = new BaseResponse();
+        try {
+            jedisCluster.lset(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()), cacheRequest.getIndex(), cacheRequest.getInsteadValue());
+        } catch (Exception e) {
+            SystemUtils.buildErrorResponse(baseResponse);
+        }
+        return baseResponse;
+    }
+
+    public CacheResponse listGetByIndex(CacheRequest cacheRequest) {
+        CacheResponse cacheResponse = new CacheResponse();
+        try {
+            cacheResponse.setValue(jedisCluster.lindex(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()), cacheRequest.getIndex()));
+        } catch (Exception e) {
+            SystemUtils.buildErrorResponse(cacheResponse);
+        }
+        return cacheResponse;
+    }
 }

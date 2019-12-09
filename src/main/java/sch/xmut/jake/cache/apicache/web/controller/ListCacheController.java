@@ -46,4 +46,29 @@ public class ListCacheController {
      * 出栈元素
      * @Params: member、key、operate_type(左或右)
      */
+    @RequestMapping(value = "/get-one", method = RequestMethod.POST)
+    @ResponseBody
+    public CacheResponse listGetOne(@RequestBody @Valid CacheRequest cacheRequest) {
+        return listCacheService.listGetOne(cacheRequest);
+    }
+
+    /**
+     * 修改key对应list指定下标index的元素
+     * @Params: member、key、index、instead_value(替代的元素)
+     */
+    @RequestMapping(value = "/update-by-index", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponse listUpdateByIndex(@RequestBody @Valid CacheRequest cacheRequest) {
+        return listCacheService.listUpdateByIndex(cacheRequest);
+    }
+
+    /**
+     * 获取key对应list指定下标index的元素
+     * @Params: member、key、index
+     */
+    @RequestMapping(value = "/get-by-index", method = RequestMethod.POST)
+    @ResponseBody
+    public CacheResponse listGetByIndex(@RequestBody @Valid CacheRequest cacheRequest) {
+        return listCacheService.listGetByIndex(cacheRequest);
+    }
 }

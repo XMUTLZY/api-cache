@@ -25,11 +25,15 @@ public class CacheRequest {
     @JsonProperty("map_entry")
     private Map<String, String> mapEntry;
     @JsonProperty("operate_type")
-    private String operateType = CacheConstans.OPERATE_TYPE_LEFT;
+    private String operateType = CacheConstans.OPERATE_TYPE_LEFT; // list 左或右操作
     @JsonProperty("start")
     private Integer start; // list 起始索引位置
     @JsonProperty("end")
     private Integer end; // list 最终索引位置
+    @JsonProperty("index")
+    private Integer index; // list 索引位置
+    @JsonProperty("instead_value")
+    private String insteadValue; // list 替换的值
 
     public String getMember() {
         return member;
@@ -93,5 +97,21 @@ public class CacheRequest {
 
     public void setEnd(Integer end) {
         this.end = end;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
+
+    public String getInsteadValue() {
+        return insteadValue;
+    }
+
+    public void setInsteadValue(String insteadValue) {
+        this.insteadValue = insteadValue;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Jake.lin on 2019/12/03
@@ -21,6 +22,9 @@ public class CacheResponse extends BaseResponse{
     @JsonProperty("map_entry")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String, String> mapEntry;
+    @JsonProperty("value_set")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Set<String> valueSet;
 
     public String getKey() {
         return key;
@@ -52,5 +56,13 @@ public class CacheResponse extends BaseResponse{
 
     public void setMapEntry(Map<String, String> mapEntry) {
         this.mapEntry = mapEntry;
+    }
+
+    public Set<String> getValueSet() {
+        return valueSet;
+    }
+
+    public void setValueSet(Set<String> valueSet) {
+        this.valueSet = valueSet;
     }
 }
