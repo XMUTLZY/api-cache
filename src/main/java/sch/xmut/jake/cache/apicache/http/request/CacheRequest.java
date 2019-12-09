@@ -26,6 +26,10 @@ public class CacheRequest {
     private Map<String, String> mapEntry;
     @JsonProperty("operate_type")
     private String operateType = CacheConstans.OPERATE_TYPE_LEFT;
+    @JsonProperty("start")
+    private Integer start; // list 起始索引位置
+    @JsonProperty("end")
+    private Integer end; // list 最终索引位置
 
     public String getMember() {
         return member;
@@ -73,5 +77,21 @@ public class CacheRequest {
 
     public void setOperateType(String operateType) {
         this.operateType = operateType;
+    }
+
+    public Integer getStart() {
+        return start;
+    }
+
+    public void setStart(Integer start) {
+        this.start = start;
+    }
+
+    public Integer getEnd() {
+        return end;
+    }
+
+    public void setEnd(Integer end) {
+        this.end = end;
     }
 }

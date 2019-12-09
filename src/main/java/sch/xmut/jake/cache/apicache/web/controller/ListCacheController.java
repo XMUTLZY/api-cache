@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
+import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.service.ListCacheService;
 import javax.validation.Valid;
 
@@ -32,6 +33,17 @@ public class ListCacheController {
     }
 
     /**
-     *
+     * 获取对应区间的元素
+     * @Params: member、key、start(起始)、end(终止)
+     */
+    @RequestMapping(value = "/get-range", method = RequestMethod.POST)
+    @ResponseBody
+    public CacheResponse listGetRange(@RequestBody @Valid CacheRequest cacheRequest) {
+        return listCacheService.listGetRange(cacheRequest);
+    }
+
+    /**
+     * 出栈元素
+     * @Params: member、key、operate_type(左或右)
      */
 }

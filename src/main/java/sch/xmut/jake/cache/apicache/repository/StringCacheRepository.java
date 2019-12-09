@@ -7,7 +7,6 @@ import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.web.utils.SystemUtils;
-import java.util.Date;
 
 /**
  * Created by Jake.lin on 2019/12/03
@@ -22,9 +21,7 @@ public class StringCacheRepository {
         try {
             jedisCluster.set(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()), cacheRequest.getValue());
         } catch (Exception e) {
-            baseResponse.setStatus(BaseResponse.FAILD_STATUS);
-            baseResponse.setStatusCode(BaseResponse.FAILD_CODE);
-            baseResponse.setMessage("system error." + SystemUtils.dateToFormat(new Date()));
+            SystemUtils.buildErrorResponse(baseResponse);
         }
         return new BaseResponse();
     }
@@ -35,9 +32,7 @@ public class StringCacheRepository {
             Object value = jedisCluster.get(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()));
             cacheResponse.setValue(value.toString());
         } catch (Exception e) {
-            cacheResponse.setStatus(BaseResponse.FAILD_STATUS);
-            cacheResponse.setStatusCode(BaseResponse.FAILD_CODE);
-            cacheResponse.setMessage("system error." + SystemUtils.dateToFormat(new Date()));
+            SystemUtils.buildErrorResponse(cacheResponse);
         }
         return cacheResponse;
     }
@@ -47,9 +42,7 @@ public class StringCacheRepository {
         try {
             jedisCluster.del(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()));
         } catch (Exception e) {
-            baseResponse.setStatus(BaseResponse.FAILD_STATUS);
-            baseResponse.setStatusCode(BaseResponse.FAILD_CODE);
-            baseResponse.setMessage("system error." + SystemUtils.dateToFormat(new Date()));
+            SystemUtils.buildErrorResponse(baseResponse);
         }
         return new BaseResponse();
     }

@@ -6,8 +6,8 @@ import redis.clients.jedis.JedisCluster;
 import sch.xmut.jake.cache.apicache.constants.CacheConstans;
 import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
+import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.web.utils.SystemUtils;
-import java.util.Date;
 
 /**
  * Created by Jake.lin 2019/12/05
@@ -29,10 +29,18 @@ public class ListCacheRepository {
                 }
             }
         } catch (Exception e) {
-            baseResponse.setStatus(BaseResponse.FAILD_STATUS);
-            baseResponse.setStatusCode(BaseResponse.FAILD_CODE);
-            baseResponse.setMessage("system error." + SystemUtils.dateToFormat(new Date()));
+            SystemUtils.buildErrorResponse(baseResponse);
         }
         return baseResponse;
+    }
+
+    public CacheResponse listGetRange(CacheRequest cacheRequest) {
+        CacheResponse cacheResponse = new CacheResponse();
+        try {
+            cacheResponse.setValueList(jedisCluster.lrange(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()), cacheRequest.getStart(), cacheRequest.getEnd()));
+        } catch (Exception e) {
+            SystemUtils.buildErrorResponse(cacheResponse);
+        }
+        return cacheResponse;
     }
 }
