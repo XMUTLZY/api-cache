@@ -26,7 +26,7 @@ public class SetCacheRepository {
         return baseResponse;
     }
 
-    public CacheResponse setGetByKey(CacheRequest cacheRequest) {
+    public CacheResponse setGet(CacheRequest cacheRequest) {
         CacheResponse cacheResponse = new CacheResponse();
         try {
             cacheResponse.setValueSet(jedisCluster.smembers(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey())));

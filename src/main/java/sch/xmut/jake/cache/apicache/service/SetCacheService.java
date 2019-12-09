@@ -26,7 +26,7 @@ public class SetCacheService {
         return baseResponse;
     }
 
-    public CacheResponse setGetByKey(CacheRequest cacheRequest) {
-        return setCacheRepository.setGetByKey(cacheRequest);
+    public CacheResponse setGet(CacheRequest cacheRequest) {
+        return setCacheRepository.setGet(cacheRequest);
     }
 }

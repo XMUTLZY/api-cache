@@ -11,7 +11,6 @@ import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.service.SetCacheService;
 import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
-
 import javax.validation.Valid;
 
 /**
@@ -38,10 +37,10 @@ public class SetCacheController {
      * 获取key对应的所有元素
      * @Params: member、key
      */
-    @RequestMapping(value = "/get-by-key", method = RequestMethod.POST)
+    @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
     @KeyRequired
-    public CacheResponse setGetByKey(@RequestBody CacheRequest cacheRequest) {
-        return setCacheService.setGetByKey(cacheRequest);
+    public CacheResponse setGet(@RequestBody CacheRequest cacheRequest) {
+        return setCacheService.setGet(cacheRequest);
     }
 }
