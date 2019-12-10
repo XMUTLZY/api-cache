@@ -14,3 +14,12 @@
 #### Set
     /cache/set/add    PUT   添加一个set @Params:member、key、value_list
     /cache/set/get    POST    获取key对应的所有元素 @Params:member、key
+    
+#### Hash
+    /cache/hash/add    PUT   添加一个hash  @Params:member、key、value_map
+    /cache/hash/add-one    PUT    往Hash插入一个元素(key, value) @Params:member、key、new_key、new_value 
+    /cache/hash/get     POST    获取Hash所有的元素  @Params:member、key
+    
+#### ZSort
+    /cache/zsort/add    PUT   添加一个有序集  @Params:member、key、zsort_map
+    /cache/zsort/add-one    PUT    插入一个元素 @Params:member、key、score、value
