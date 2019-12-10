@@ -25,6 +25,9 @@ public class CacheResponse extends BaseResponse{
     @JsonProperty("value_set")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Set<String> valueSet;
+    @JsonProperty("key_set")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Set<String> keySet;
 
     public String getKey() {
         return key;
@@ -64,5 +67,13 @@ public class CacheResponse extends BaseResponse{
 
     public void setValueSet(Set<String> valueSet) {
         this.valueSet = valueSet;
+    }
+
+    public Set<String> getKeySet() {
+        return keySet;
+    }
+
+    public void setKeySet(Set<String> keySet) {
+        this.keySet = keySet;
     }
 }

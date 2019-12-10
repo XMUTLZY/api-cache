@@ -22,8 +22,8 @@ public class CacheRequest {
     private String value;
     @JsonProperty("value_list")
     private List<String> valueList;
-    @JsonProperty("map_entry")
-    private Map<String, String> mapEntry;
+    @JsonProperty("value_map")
+    private Map<String, String> valueMap;
     @JsonProperty("operate_type")
     private String operateType = CacheConstans.OPERATE_TYPE_LEFT; // list 左或右操作
     @JsonProperty("start")
@@ -34,6 +34,14 @@ public class CacheRequest {
     private Integer index; // list 索引位置
     @JsonProperty("instead_value")
     private String insteadValue; // list 替换的值
+    @JsonProperty("new_key")
+    private String newKey; // map
+    @JsonProperty("new_value")
+    private String newValue; // map
+    @JsonProperty("zsort_map")
+    private Map<String, Double> zsortMap; // 有序集合map
+    @JsonProperty("score")
+    private Double score;  //有序集合score
 
     public String getMember() {
         return member;
@@ -67,12 +75,12 @@ public class CacheRequest {
         this.valueList = valueList;
     }
 
-    public Map<String, String> getMapEntry() {
-        return mapEntry;
+    public Map<String, String> getValueMap() {
+        return valueMap;
     }
 
-    public void setMapEntry(Map<String, String> mapEntry) {
-        this.mapEntry = mapEntry;
+    public void setValueMap(Map<String, String> valueMap) {
+        this.valueMap = valueMap;
     }
 
     public String getOperateType() {
@@ -113,5 +121,37 @@ public class CacheRequest {
 
     public void setInsteadValue(String insteadValue) {
         this.insteadValue = insteadValue;
+    }
+
+    public String getNewKey() {
+        return newKey;
+    }
+
+    public void setNewKey(String newKey) {
+        this.newKey = newKey;
+    }
+
+    public String getNewValue() {
+        return newValue;
+    }
+
+    public void setNewValue(String newValue) {
+        this.newValue = newValue;
+    }
+
+    public Map<String, Double> getZsortMap() {
+        return zsortMap;
+    }
+
+    public void setZsortMap(Map<String, Double> zsortMap) {
+        this.zsortMap = zsortMap;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 }
