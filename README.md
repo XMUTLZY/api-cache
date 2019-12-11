@@ -24,7 +24,7 @@
     /cache/zsort/add    PUT   添加一个有序集  @Params:member、key、zsort_map
     /cache/zsort/add-one    PUT    插入一个元素 @Params:member、key、score、value
     
-#####tips: 只支持string数据类型，在需要使用对象时，需进行json转换
+#### tips: 只支持string数据类型，在需要使用对象时，需进行json转换
     demo: jedis.set("KEY",JSON.toJSONString(new User()));
           String str = jedis.get("key");
           User result = JSON.parseObject(str, User.class);
