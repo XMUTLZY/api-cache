@@ -20,7 +20,7 @@ public class RedisConfig {
     @Value("${spring.redis.jedis.pool.max-idle}")
     private int maxIdle;
     @Value("${spring.redis.jedis.pool.max-wait}")
-    private long maxWaitMillis;
+    private int maxWaitMillis;
 
     @Bean
     public JedisCluster getJedisCluster() {
@@ -34,5 +34,16 @@ public class RedisConfig {
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
         return new JedisCluster(nodes, jedisPoolConfig);
+    }
+
+    @Bean
+    public JedisSlotAdvancedConnectionHandler getJedisClusterPlus() {
+        String[] cNodes = clusterNodes.split(",");
+        Set<HostAndPort> nodes = new HashSet<>();
+        for(String node : cNodes) {
+            String[] hp = node.split(":");
+            nodes.add(new HostAndPort(hp[0], Integer.parseInt(hp[1])));
+        }
+        return new JedisClusterPlus(nodes, 2000, 2000, new JedisPoolConfig()).getConnectionHandler();
     }
 }

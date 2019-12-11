@@ -42,6 +42,10 @@ public class CacheRequest {
     private Map<String, Double> zsortMap; // 有序集合map
     @JsonProperty("score")
     private Double score;  //有序集合score
+    @JsonProperty("member_key_map")
+    private Map<String, String> memberKeyMap; // pipelined (member,key) 形式作为新的key值
+    @JsonProperty("member_key_value_map")
+    private Map<Map<String, String>, String> memberKeyValueMap; // pipelined (member+key, value) 形式作为传入的key,value
 
     public String getMember() {
         return member;
@@ -153,5 +157,21 @@ public class CacheRequest {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    public Map<String, String> getMemberKeyMap() {
+        return memberKeyMap;
+    }
+
+    public void setMemberKeyMap(Map<String, String> memberKeyMap) {
+        this.memberKeyMap = memberKeyMap;
+    }
+
+    public Map<Map<String, String>, String> getMemberKeyValueMap() {
+        return memberKeyValueMap;
+    }
+
+    public void setMemberKeyValueMap(Map<Map<String, String>, String> memberKeyValueMap) {
+        this.memberKeyValueMap = memberKeyValueMap;
     }
 }
