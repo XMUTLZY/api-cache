@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
+import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.service.BatchCacheService;
+import javax.validation.Valid;
 
 /**
  * Created by Jake.lin on 2019/12/11
@@ -22,11 +24,21 @@ public class BatchCacheController {
 
     /**
      * 批量添加数据
-     * @Params: member_key_value_map
+     * @Params: member、key_value_map
      */
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
     @ResponseBody
-    public BaseResponse add(@RequestBody CacheRequest cacheRequest) {
+    public BaseResponse add(@RequestBody @Valid CacheRequest cacheRequest) {
         return batchCacheService.add(cacheRequest);
+    }
+
+    /**
+     * 批量读取数据
+     * @Params: member、key_list
+     */
+    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    @ResponseBody
+    public CacheResponse get(@RequestBody @Valid CacheRequest cacheRequest) {
+        return batchCacheService.get(cacheRequest);
     }
 }

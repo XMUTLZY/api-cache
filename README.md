@@ -28,4 +28,8 @@
     demo: jedis.set("KEY",JSON.toJSONString(new User()));
           String str = jedis.get("key");
           User result = JSON.parseObject(str, User.class);
+         
+#### 管道技术，在批量添加和获取数据时提高效率
+    /cache/batch/add    PUT   批量添加缓存数据  @Params:member、key_value_map
+    /cache/batch/get   PUT    批量获取缓存数据 @Params:member、key_list
           
