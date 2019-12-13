@@ -13,9 +13,7 @@ public class BaseResponse {
     public static final String FAILD_STATUS = "error";
     @JsonProperty("status_code")
     private Integer statusCode = SUCCESS_CODE;
-    @JsonProperty("status")
     private String status = SUCCESS_STATUS;
-    @JsonProperty("message")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
 

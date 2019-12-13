@@ -36,10 +36,9 @@ public class BatchCacheRepository {
             JedisPool jedisPool = jedisSlotAdvancedConnectionHandler.getJedisPoolFromSlot(slot); //根据槽位获取jedisPool
             jedisPoolStringMap.get(jedisPool).add(key);
         }
-        Set<Map.Entry<JedisPool, List<String>>> entrySet = jedisPoolStringMap.entrySet();
         try {
             long begin = System.currentTimeMillis();
-            for (Map.Entry<JedisPool, List<String>> entry : entrySet) {
+            jedisPoolStringMap.entrySet().forEach(entry -> {
                 Jedis jedis = entry.getKey().getResource();
                 Pipeline pipeline = jedis.pipelined();
                 entry.getValue().forEach(item->{
@@ -47,15 +46,14 @@ public class BatchCacheRepository {
                 });
                 pipeline.sync();
                 jedis.close();
-            }
+            });
             long end = System.currentTimeMillis();
 
             // 测试不适用管道的时间
             long begin1 = System.currentTimeMillis();
-            Set<Map.Entry<String, String>> entrySet1 = newKeyValueMap.entrySet();
-            for (Map.Entry<String, String> entry : entrySet1) {
-                jedisCluster.set(entry.getKey(), entry.getValue());
-            }
+            newKeyValueMap.entrySet().forEach(stringStringEntry -> {
+                jedisCluster.set(stringStringEntry.getKey(), stringStringEntry.getValue());
+            });
             long end1 = System.currentTimeMillis();
 
             baseResponse.setMessage("use pipeline batch set total time：" + (end - begin) + ", no use pipeline batch set total time：" + (end1 - begin1));
@@ -70,7 +68,7 @@ public class BatchCacheRepository {
         List<Object> resultList = new ArrayList<>();
         Map<JedisPool, List<String>> jedisPoolStringMap = buildJedisPoolKeyListMap();
         List<String> newKeyList = new ArrayList<>();
-        cacheRequest.getKeyList().forEach(string->{
+        cacheRequest.getKeyList().forEach(string -> {
             newKeyList.add(SystemUtils.buildKey(cacheRequest.getMember(), string));
         });
         newKeyList.forEach(key->{
@@ -79,10 +77,10 @@ public class BatchCacheRepository {
         });
         Set<Map.Entry<JedisPool, List<String>>> entrySet = jedisPoolStringMap.entrySet();
         try {
-            entrySet.forEach(entry->{
+            entrySet.forEach(entry -> {
                 Jedis jedis = entry.getKey().getResource();
                 Pipeline pipeline = jedis.pipelined();
-                entry.getValue().forEach(key->{
+                entry.getValue().forEach(key -> {
                     pipeline.get(key);
                 });
                 resultList.addAll(pipeline.syncAndReturnAll());

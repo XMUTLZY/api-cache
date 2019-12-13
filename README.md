@@ -24,6 +24,11 @@
     /cache/zsort/add    PUT   添加一个有序集  @Params:member、key、zsort_map
     /cache/zsort/add-one    PUT    插入一个元素 @Params:member、key、score、value
     
+#### Key
+    /key/is-exist    POST   判断key值是否存在  @Params:member、key
+    /key/set-time    POST   设置键的生存时间(s) @Params:member、key、life_time
+    /key/get-time    POST   获取键剩余的生存时间(s) @Params:member、key
+    
 #### tips: 只支持string数据类型，在需要使用对象时，需进行json转换
     demo: jedis.set("KEY",JSON.toJSONString(new User()));
           String str = jedis.get("key");
@@ -31,5 +36,5 @@
          
 #### 管道技术，在批量添加和获取数据时提高效率
     /cache/batch/add    PUT   批量添加缓存数据  @Params:member、key_value_map
-    /cache/batch/get   PUT    批量获取缓存数据 @Params:member、key_list
+    /cache/batch/get   POST    批量获取缓存数据  @Params:member、key_list
           

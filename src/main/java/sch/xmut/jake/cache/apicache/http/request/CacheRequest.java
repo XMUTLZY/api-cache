@@ -13,12 +13,9 @@ import java.util.Map;
  */
 public class CacheRequest {
     @NotNull
-    @JsonProperty("member")
     private String member;
     @Pattern(regexp = CommonConstants.KEY_PATTERN, message = "只允许大写字母和_")
-    @JsonProperty("key")
     private String key;
-    @JsonProperty("value")
     private String value;
     @JsonProperty("key_list")
     private List<String> keyList;
@@ -28,11 +25,8 @@ public class CacheRequest {
     private Map<String, String> valueMap;
     @JsonProperty("operate_type")
     private String operateType = CacheConstans.OPERATE_TYPE_LEFT; // list 左或右操作
-    @JsonProperty("start")
     private Integer start; // list 起始索引位置
-    @JsonProperty("end")
     private Integer end; // list 最终索引位置
-    @JsonProperty("index")
     private Integer index; // list 索引位置
     @JsonProperty("instead_value")
     private String insteadValue; // list 替换的值
@@ -42,10 +36,11 @@ public class CacheRequest {
     private String newValue; // map
     @JsonProperty("zsort_map")
     private Map<String, Double> zsortMap; // 有序集合map
-    @JsonProperty("score")
     private Double score;  //有序集合score
     @JsonProperty("key_value_map")
     private Map<String, String> keyValueMap; // pipelined (key, value) 形式作为传入的key,value
+    @JsonProperty("life_time")
+    private Double lifeTime;
 
     public String getMember() {
         return member;
@@ -173,5 +168,13 @@ public class CacheRequest {
 
     public void setKeyList(List<String> keyList) {
         this.keyList = keyList;
+    }
+
+    public Double getLifeTime() {
+        return lifeTime;
+    }
+
+    public void setLifeTime(Double lifeTime) {
+        this.lifeTime = lifeTime;
     }
 }

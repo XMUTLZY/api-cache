@@ -24,9 +24,9 @@ public class BatchCacheService {
         Set<Map.Entry<String, String>> entrySet = cacheRequest.getKeyValueMap().entrySet();
         Map<String, String> newKeyValueMap = new HashMap<>();
         String member = cacheRequest.getMember();
-        for (Map.Entry<String, String> entry : entrySet) {
-            newKeyValueMap.put(SystemUtils.buildKey(member, entry.getKey()), entry.getValue());
-        }
+        entrySet.forEach(stringStringEntry -> {
+            newKeyValueMap.put(SystemUtils.buildKey(member, stringStringEntry.getKey()), stringStringEntry.getValue());
+        });
         return batchCacheRepository.add(newKeyValueMap);
     }
 

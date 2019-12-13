@@ -10,10 +10,8 @@ import java.util.Set;
  * Created by Jake.lin on 2019/12/03
  */
 public class CacheResponse extends BaseResponse{
-    @JsonProperty("key")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String key;
-    @JsonProperty("value")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String value;
     @JsonProperty("value_list")

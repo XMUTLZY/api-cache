@@ -21,13 +21,13 @@ public class ListCacheRepository {
         BaseResponse baseResponse = new BaseResponse();
         try {
             String newKey = SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey());
-            for (String string : cacheRequest.getValueList()) {
+            cacheRequest.getValueList().forEach(s -> {
                 if (CacheConstans.OPERATE_TYPE_LEFT.equals(cacheRequest.getOperateType())) {
-                    jedisCluster.lpush(newKey, string);
+                    jedisCluster.lpush(newKey, s);
                 } else {
-                    jedisCluster.rpush(newKey, string);
+                    jedisCluster.rpush(newKey, s);
                 }
-            }
+            });
         } catch (Exception e) {
             SystemUtils.buildErrorResponse(baseResponse);
         }
