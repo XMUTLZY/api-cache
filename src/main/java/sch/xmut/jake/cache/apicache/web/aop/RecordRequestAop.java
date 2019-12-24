@@ -62,6 +62,7 @@ public class RecordRequestAop {
         recordRequest.setContentType(request.getContentType());
         recordRequest.setMethodType(request.getMethod());
         recordRequest.setParams(JSONObject.toJSONString(cacheRequest));
+        recordRequest.setProjectMember(cacheRequest.getMember());
         recordRequest.setCreateTime(SystemUtils.dateToFormat(new Date()));
         return recordRequest;
     }
