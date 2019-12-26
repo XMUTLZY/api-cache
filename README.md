@@ -37,4 +37,6 @@
 #### 管道技术，在批量添加和获取数据时提高效率
     /cache/batch/add    PUT   批量添加缓存数据  @Params:member、key_value_map
     /cache/batch/get   POST    批量获取缓存数据  @Params:member、key_list
-          
+      
+#### 最新添加了mongo记录
+     需要请自行在application.properites中配置
