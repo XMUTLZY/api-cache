@@ -10,4 +10,6 @@ public class CacheConstans {
     public static final String WEB_CACHE_IMAGE_PROJECT_MEMBER = "WEB:CACHE_IMAGE_PROJECT_MEMBER";
     public static final String OPERATE_TYPE_LEFT = "LEFT_TYPE";
     public static final String OPERATE_TYPE_RIGHT = "RIGHT_TYPE";
+    public static final String RECORD_TYPE_CONTROLLER = "RECORD_CONTROLLER"; // AOP记录范围 Controller
+    public static final String RECORD_TYPE_SERVICE = "RECORD_SERVICE"; // AOP记录范围 Service
 }

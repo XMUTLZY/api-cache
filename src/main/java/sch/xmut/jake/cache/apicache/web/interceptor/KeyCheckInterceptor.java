@@ -1,14 +1,15 @@
 package sch.xmut.jake.cache.apicache.web.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import sch.xmut.jake.cache.apicache.http.request.CacheRequest;
 import sch.xmut.jake.cache.apicache.service.KeyService;
 import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
 import sch.xmut.jake.cache.apicache.web.utils.SystemUtils;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.List;
  * @Tips: 判断key值是否存在  拦截器
  */
 public class KeyCheckInterceptor extends HandlerInterceptorAdapter {
-    @Autowired
+    @Resource
     private KeyService keyService;
     public static final Integer MEMBER_BE_NULL = 431;
     public static final Integer KEY_BE_NULL = 432;
@@ -47,7 +48,9 @@ public class KeyCheckInterceptor extends HandlerInterceptorAdapter {
                 return false;
             } else {
                 List<String> keyList = Arrays.asList(SystemUtils.buildKey(member, key));
-                if (!keyService.isExistsByKeyList(keyList).get(keyList.get(0))) {
+                CacheRequest cacheRequest = new CacheRequest();
+                cacheRequest.setMemberKeyList(keyList);
+                if (!keyService.isExistsByKeyList(cacheRequest).get(keyList.get(0))) {
                     buildHttpServletResponse(response, KEY_NO_EXISTS, "{\"status\":" + KEY_NO_EXISTS + ",\n\"message\":\"the key(member+key) no exist.\"}");
                     return false;
                 }

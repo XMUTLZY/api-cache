@@ -1,6 +1,5 @@
 package sch.xmut.jake.cache.apicache.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +10,7 @@ import sch.xmut.jake.cache.apicache.http.response.BaseResponse;
 import sch.xmut.jake.cache.apicache.http.response.CacheResponse;
 import sch.xmut.jake.cache.apicache.service.SetCacheService;
 import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 /**
@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = "/cache/set")
 public class SetCacheController {
-    @Autowired
+    @Resource
     private SetCacheService setCacheService;
 
     /**

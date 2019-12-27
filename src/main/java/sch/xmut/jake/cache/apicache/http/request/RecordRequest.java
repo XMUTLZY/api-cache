@@ -10,10 +10,13 @@ public class RecordRequest {
     private String projectMember;
     private String params;
     private String url;
+    private String method;
     @JsonProperty("content_type")
     private String contentType;
     @JsonProperty("method_type")
     private String methodType;
+    @JsonProperty("record_type")
+    private String recordType;
     @JsonProperty("create_time")
     private String createTime;
 
@@ -63,5 +66,21 @@ public class RecordRequest {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getRecordType() {
+        return recordType;
+    }
+
+    public void setRecordType(String recordType) {
+        this.recordType = recordType;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }

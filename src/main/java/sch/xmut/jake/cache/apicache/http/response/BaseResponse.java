@@ -2,11 +2,12 @@ package sch.xmut.jake.cache.apicache.http.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 
 /**
  * Created by Jake.lin on 2019/12/03
  */
-public class BaseResponse {
+public class BaseResponse implements Serializable {
     public static final Integer SUCCESS_CODE = 200;
     public static final Integer FAILD_CODE = 404;
     public static final String SUCCESS_STATUS = "success";

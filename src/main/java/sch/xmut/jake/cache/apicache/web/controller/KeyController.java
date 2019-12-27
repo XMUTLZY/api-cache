@@ -1,6 +1,5 @@
 package sch.xmut.jake.cache.apicache.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +10,7 @@ import sch.xmut.jake.cache.apicache.http.response.KeyResponse;
 import sch.xmut.jake.cache.apicache.service.KeyService;
 import sch.xmut.jake.cache.apicache.web.annotation.KeyRequired;
 import sch.xmut.jake.cache.apicache.web.utils.SystemUtils;
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ import java.util.Arrays;
 @Controller
 @RequestMapping(value = "/key")
 public class KeyController {
-    @Autowired
+    @Resource
     private KeyService keyService;
 
     /**
@@ -32,7 +32,8 @@ public class KeyController {
     @ResponseBody
     public KeyResponse isExist(@RequestBody @Valid CacheRequest cacheRequest) {
         KeyResponse keyResponse = new KeyResponse();
-        keyResponse.setIsExistMap(keyService.isExistsByKeyList(Arrays.asList(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey()))));
+        cacheRequest.setMemberKeyList(Arrays.asList(SystemUtils.buildKey(cacheRequest.getMember(), cacheRequest.getKey())));
+        keyResponse.setIsExistMap(keyService.isExistsByKeyList(cacheRequest));
         return keyResponse;
     }
 

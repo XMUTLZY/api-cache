@@ -12,10 +12,13 @@ public class RedisLogDoc {
     private String projectMember;
     private String params;
     private String url;
+    private String method;
     @Field("content_type")
     private String contentType;
     @Field("method_type")
     private String methodType;
+    @Field("record_type")
+    private String recordType;
     @Field("create_time")
     private String createTime;
 
@@ -59,11 +62,27 @@ public class RedisLogDoc {
         this.methodType = methodType;
     }
 
+    public String getRecordType() {
+        return recordType;
+    }
+
+    public void setRecordType(String recordType) {
+        this.recordType = recordType;
+    }
+
     public String getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }

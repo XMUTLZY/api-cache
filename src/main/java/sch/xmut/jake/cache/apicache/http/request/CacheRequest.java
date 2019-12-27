@@ -5,13 +5,14 @@ import sch.xmut.jake.cache.apicache.constants.CacheConstans;
 import sch.xmut.jake.cache.apicache.constants.CommonConstants;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Jake.lin on 2019/12/03
  */
-public class CacheRequest {
+public class CacheRequest implements Serializable {
     @NotNull
     private String member;
     @Pattern(regexp = CommonConstants.KEY_PATTERN, message = "只允许大写字母和_")
@@ -41,6 +42,8 @@ public class CacheRequest {
     private Map<String, String> keyValueMap; // pipelined (key, value) 形式作为传入的key,value
     @JsonProperty("life_time")
     private Double lifeTime;
+    @JsonProperty("member_key_list")
+    private List<String> memberKeyList;
 
     public String getMember() {
         return member;
@@ -176,5 +179,13 @@ public class CacheRequest {
 
     public void setLifeTime(Double lifeTime) {
         this.lifeTime = lifeTime;
+    }
+
+    public List<String> getMemberKeyList() {
+        return memberKeyList;
+    }
+
+    public void setMemberKeyList(List<String> memberKeyList) {
+        this.memberKeyList = memberKeyList;
     }
 }
