@@ -1,4 +1,4 @@
-package sch.xmut.jake.cache.apicache.Document;
+package sch.xmut.jake.cache.apicache.document;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;

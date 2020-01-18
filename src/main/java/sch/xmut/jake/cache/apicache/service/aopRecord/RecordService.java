@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sch.xmut.jake.cache.apicache.Document.RedisLogDoc;
+import sch.xmut.jake.cache.apicache.document.RedisLogDoc;
 import sch.xmut.jake.cache.apicache.http.request.RecordRequest;
 
 /**
